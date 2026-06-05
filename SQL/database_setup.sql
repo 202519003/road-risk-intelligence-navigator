@@ -1,11 +1,11 @@
 
 -- =====================================================
--- 1. ENABLE POSTGIS
+--  ENABLE POSTGIS
 -- =====================================================
 CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- =====================================================
--- 2. BASE TABLE
+--  BASE TABLE
 -- =====================================================
 CREATE TABLE IF NOT EXISTS accident_data1 (
     id INTEGER PRIMARY KEY,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS accident_data1 (
 );
 
 -- =====================================================
--- 3. REMOVE INVALID COORDINATES
+--  REMOVE INVALID COORDINATES
 -- =====================================================
 DELETE FROM accident_data1
 WHERE latitude IS NULL
@@ -31,7 +31,7 @@ WHERE latitude IS NULL
    OR longitude = 0;
 
 -- =====================================================
--- 4. GEOMETRY COLUMN
+--  GEOMETRY COLUMN
 -- =====================================================
 ALTER TABLE accident_data1
 ADD COLUMN IF NOT EXISTS geom geometry(Point, 4326);
